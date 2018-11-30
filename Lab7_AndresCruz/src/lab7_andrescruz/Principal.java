@@ -5,6 +5,10 @@
  */
 package lab7_andrescruz;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author MBanegas
@@ -16,9 +20,8 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
-        administrarTiempo at=new administrarTiempo(lb_hora);
-        Thread proceso=new Thread(at);
-        proceso.start();
+        this.setLocationRelativeTo(null);
+
     }
 
     /**
@@ -30,50 +33,404 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
+        jd_bar = new javax.swing.JDialog();
         lb_hora = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        lb_mesa1 = new javax.swing.JLabel();
+        lb_mesa2 = new javax.swing.JLabel();
+        lb_mesa3 = new javax.swing.JLabel();
+        lb_mesa4 = new javax.swing.JLabel();
+        pb_mesa1 = new javax.swing.JProgressBar();
+        pb_mesa2 = new javax.swing.JProgressBar();
+        pb_mesa3 = new javax.swing.JProgressBar();
+        pb_mesa4 = new javax.swing.JProgressBar();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea3 = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextArea4 = new javax.swing.JTextArea();
+        jLabel7 = new javax.swing.JLabel();
+        mesa_add = new javax.swing.JButton();
+        mesa2_add = new javax.swing.JButton();
+        mesa3_add = new javax.swing.JButton();
+        mesa4_add = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jd_clientes = new javax.swing.JDialog();
+        jd_inventario = new javax.swing.JDialog();
+        jLabel2 = new javax.swing.JLabel();
+        jb_bar = new javax.swing.JButton();
+        jb_Clientes = new javax.swing.JButton();
+        jb_inventario = new javax.swing.JButton();
 
         lb_hora.setText("00:00:00");
 
         jLabel1.setText("Hora:");
 
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDialog1Layout.createSequentialGroup()
-                .addContainerGap(283, Short.MAX_VALUE)
+        lb_mesa1.setText("Mesa #1");
+        lb_mesa1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lb_mesa1MouseClicked(evt);
+            }
+        });
+
+        lb_mesa2.setText("Mesa #2");
+
+        lb_mesa3.setText("Mesa #3");
+
+        lb_mesa4.setText("Mesa #4");
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setRows(5);
+        jScrollPane2.setViewportView(jTextArea2);
+
+        jTextArea3.setColumns(20);
+        jTextArea3.setRows(5);
+        jScrollPane3.setViewportView(jTextArea3);
+
+        jTextArea4.setColumns(20);
+        jTextArea4.setRows(5);
+        jScrollPane4.setViewportView(jTextArea4);
+
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("*Para ordenar debe hacer click encima de la respectiva mesa, se generaran las ordenes en el orden de personas agregadas a cada mesa.");
+
+        mesa_add.setText("Agregar Cliente M#1");
+        mesa_add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mesa_addMouseClicked(evt);
+            }
+        });
+
+        mesa2_add.setText("Agregar Cliente M#2");
+        mesa2_add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mesa2_addMouseClicked(evt);
+            }
+        });
+
+        mesa3_add.setText("Agregar Cliente M#3");
+        mesa3_add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mesa3_addMouseClicked(evt);
+            }
+        });
+
+        mesa4_add.setText("Agregar Cliente M#4");
+        mesa4_add.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mesa4_addMouseClicked(evt);
+            }
+        });
+
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("**Si la mesa no esta llena debe esperar 15 minutos para que se pueda tomar su orden.");
+
+        javax.swing.GroupLayout jd_barLayout = new javax.swing.GroupLayout(jd_bar.getContentPane());
+        jd_bar.getContentPane().setLayout(jd_barLayout);
+        jd_barLayout.setHorizontalGroup(
+            jd_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_barLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(lb_hora)
                 .addGap(28, 28, 28))
+            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
+            .addGroup(jd_barLayout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addGroup(jd_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(mesa_add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(pb_mesa1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lb_mesa1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jd_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lb_mesa2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pb_mesa2, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(mesa2_add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jd_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jd_barLayout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jd_barLayout.createSequentialGroup()
+                        .addComponent(mesa3_add, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(mesa4_add, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jd_barLayout.createSequentialGroup()
+                        .addGroup(jd_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lb_mesa3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pb_mesa3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jd_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pb_mesa4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lb_mesa4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialog1Layout.createSequentialGroup()
+        jd_barLayout.setVerticalGroup(
+            jd_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jd_barLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addGroup(jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jd_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(lb_hora))
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addGap(68, 68, 68)
+                .addGroup(jd_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lb_mesa1, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(lb_mesa2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lb_mesa3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lb_mesa4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jd_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jd_barLayout.createSequentialGroup()
+                        .addGroup(jd_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(pb_mesa3, javax.swing.GroupLayout.DEFAULT_SIZE, 33, Short.MAX_VALUE)
+                            .addComponent(pb_mesa2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pb_mesa1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pb_mesa4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jd_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jd_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jd_barLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mesa_add)
+                    .addComponent(mesa2_add)
+                    .addComponent(mesa3_add)
+                    .addComponent(mesa4_add))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addGap(4, 4, 4)
+                .addComponent(jLabel8)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jd_clientesLayout = new javax.swing.GroupLayout(jd_clientes.getContentPane());
+        jd_clientes.getContentPane().setLayout(jd_clientesLayout);
+        jd_clientesLayout.setHorizontalGroup(
+            jd_clientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jd_clientesLayout.setVerticalGroup(
+            jd_clientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jd_inventarioLayout = new javax.swing.GroupLayout(jd_inventario.getContentPane());
+        jd_inventario.getContentPane().setLayout(jd_inventarioLayout);
+        jd_inventarioLayout.setHorizontalGroup(
+            jd_inventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jd_inventarioLayout.setVerticalGroup(
+            jd_inventarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(153, 255, 255));
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("La Excepcion");
+
+        jb_bar.setText("Bar");
+        jb_bar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jb_barMouseClicked(evt);
+            }
+        });
+
+        jb_Clientes.setText("Clientes");
+
+        jb_inventario.setText("Inventario");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 550, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jb_inventario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb_Clientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jb_bar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 380, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jb_bar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jb_Clientes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jb_inventario)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jb_barMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_barMouseClicked
+        // TODO add your handling code here:
+        jd_bar.setModal(true);
+        jd_bar.setLocationRelativeTo(null);
+        jd_bar.pack();
+        administrarTiempo at=new administrarTiempo(lb_hora);
+        Thread proceso=new Thread(at);
+        proceso.start();        
+        ac.cargarArchivo();
+        for (int i = 0; i < ac.getClientes().size(); i++) {
+            clientes.add(ac.getClientes().get(i));
+        }
+        Collections.shuffle(clientes);
+        jd_bar.setVisible(true);                
+    }//GEN-LAST:event_jb_barMouseClicked
+
+    private void mesa_addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mesa_addMouseClicked
+        // TODO add your handling code here:
+        boolean seleccion=true;
+        while(seleccion){
+        try {
+            if ((m1==null||m1.getClientes().size()<4)&&!clientes.isEmpty()) {
+            String imprimir="";
+            for (int i = 0; i < clientes.size(); i++) {
+                imprimir+="Posicion: "+i+" - "+clientes.get(i)+"\n";
+            }
+            int elegido=Integer.parseInt(JOptionPane.showInputDialog(jd_bar,imprimir+"Ingrese la posicion del cliente para agregarlo a la mesa: " ));
+            seleccion=false;
+            m1=new Mesa(pb_mesa1);
+            m1.getClientes().add(clientes.get(elegido));
+            clientes.remove(elegido);
+            if (m1.isFlag()) {                
+            }else{
+            m1.start();
+            m1.setFlag(true);
+            }    
+            }else{
+            JOptionPane.showMessageDialog(jd_bar, "La mesa actual esta llena o ya no hay clientes en la lista de espera, espere para poder ordenar!");
+            seleccion=false;
+            }            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(jd_bar, "La posicion ingresada no es valida!\nIntentelo Nuevamente.");
+        }
+        
+        }
+    }//GEN-LAST:event_mesa_addMouseClicked
+
+    private void mesa2_addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mesa2_addMouseClicked
+        // TODO add your handling code here:
+        boolean seleccion=true;
+        while(seleccion){
+        try {
+            if ((m2==null||m2.getClientes().size()<2)&&!clientes.isEmpty()) {
+            String imprimir="";
+            for (int i = 0; i < clientes.size(); i++) {
+                imprimir+="Posicion: "+i+" - "+clientes.get(i)+"\n";
+            }
+            int elegido=Integer.parseInt(JOptionPane.showInputDialog(jd_bar,imprimir+"Ingrese la posicion del cliente para agregarlo a la mesa: " ));
+            seleccion=false;
+            m2=new Mesa(pb_mesa2);
+            m2.getClientes().add(clientes.get(elegido));
+            clientes.remove(elegido);
+            if (m2.isFlag()) {                
+            }else{
+            m2.start();
+            m2.setFlag(true);
+            }    
+            }else{
+            JOptionPane.showMessageDialog(jd_bar, "La mesa actual esta llena o ya no hay clientes en la lista de espera, espere para poder ordenar!");
+            seleccion=false;
+            }            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(jd_bar, "La posicion ingresada no es valida!\nIntentelo Nuevamente.");
+        }
+        
+        }
+    }//GEN-LAST:event_mesa2_addMouseClicked
+
+    private void mesa3_addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mesa3_addMouseClicked
+        // TODO add your handling code here:
+        boolean seleccion=true;
+        while(seleccion){
+        try {
+            if ((m3==null||m3.getClientes().size()<4)&&!clientes.isEmpty()) {
+            String imprimir="";
+            for (int i = 0; i < clientes.size(); i++) {
+                imprimir+="Posicion: "+i+" - "+clientes.get(i)+"\n";
+            }
+            int elegido=Integer.parseInt(JOptionPane.showInputDialog(jd_bar,imprimir+"Ingrese la posicion del cliente para agregarlo a la mesa: " ));
+            seleccion=false;
+            m3=new Mesa(pb_mesa3);
+            m3.getClientes().add(clientes.get(elegido));
+            clientes.remove(elegido);
+            if (m3.isFlag()) {                
+            }else{
+            m3.start();
+            m3.setFlag(true);
+            }    
+            }else{
+            JOptionPane.showMessageDialog(jd_bar, "La mesa actual esta llena o ya no hay clientes en la lista de espera, espere para poder ordenar!");
+            seleccion=false;
+            }           
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(jd_bar, "La posicion ingresada no es valida!\nIntentelo Nuevamente.");
+        }
+        
+        }
+    }//GEN-LAST:event_mesa3_addMouseClicked
+
+    private void mesa4_addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mesa4_addMouseClicked
+        // TODO add your handling code here:
+        boolean seleccion=true;
+        while(seleccion){
+        try {
+            if ((m4==null||m4.getClientes().size()<4)&&!clientes.isEmpty()) {
+            String imprimir="";
+            for (int i = 0; i < clientes.size(); i++) {
+                imprimir+="Posicion: "+i+" - "+clientes.get(i)+"\n";
+            }
+            int elegido=Integer.parseInt(JOptionPane.showInputDialog(jd_bar,imprimir+"Ingrese la posicion del cliente para agregarlo a la mesa: " ));
+            seleccion=false;
+            m4=new Mesa(pb_mesa4);
+            m4.getClientes().add(clientes.get(elegido));
+            clientes.remove(elegido);
+            if (m4.isFlag()) {                
+            }else{
+            m4.start();
+            m4.setFlag(true);
+            }    
+            }else{
+            JOptionPane.showMessageDialog(jd_bar, "La mesa actual esta llena o ya no hay clientes en la lista de espera, espere para poder ordenar!");
+            seleccion=false;
+            }            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(jd_bar, "La posicion ingresada no es valida!\nIntentelo Nuevamente.");
+        }
+        
+        }
+    }//GEN-LAST:event_mesa4_addMouseClicked
+
+    private void lb_mesa1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_mesa1MouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_lb_mesa1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -86,7 +443,7 @@ public class Principal extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -111,8 +468,39 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextArea3;
+    private javax.swing.JTextArea jTextArea4;
+    private javax.swing.JButton jb_Clientes;
+    private javax.swing.JButton jb_bar;
+    private javax.swing.JButton jb_inventario;
+    private javax.swing.JDialog jd_bar;
+    private javax.swing.JDialog jd_clientes;
+    private javax.swing.JDialog jd_inventario;
     private javax.swing.JLabel lb_hora;
+    private javax.swing.JLabel lb_mesa1;
+    private javax.swing.JLabel lb_mesa2;
+    private javax.swing.JLabel lb_mesa3;
+    private javax.swing.JLabel lb_mesa4;
+    private javax.swing.JButton mesa2_add;
+    private javax.swing.JButton mesa3_add;
+    private javax.swing.JButton mesa4_add;
+    private javax.swing.JButton mesa_add;
+    private javax.swing.JProgressBar pb_mesa1;
+    private javax.swing.JProgressBar pb_mesa2;
+    private javax.swing.JProgressBar pb_mesa3;
+    private javax.swing.JProgressBar pb_mesa4;
     // End of variables declaration//GEN-END:variables
-  }
+    ArrayList<Cliente>clientes;
+    Mesa m1,m2,m3,m4;
+    administrarCliente ac=new administrarCliente("./Cliente.aecb");
+}

@@ -16,6 +16,7 @@ public class Mesa extends Thread{
     JProgressBar mesa;
     boolean vive=false;
     boolean orden=false;
+    boolean flag=false;
     ArrayList<Cliente>clientes=new ArrayList();
 
     public Mesa(JProgressBar mesa) {
@@ -23,6 +24,30 @@ public class Mesa extends Thread{
         vive=true;
     }
 
+    public boolean isFlag() {
+        return flag;
+    }
+
+    public void setFlag(boolean flag) {
+        this.flag = flag;
+    }
+    
+    public boolean isVive() {
+        return vive;
+    }
+
+    public void setVive(boolean vive) {
+        this.vive = vive;
+    }
+
+    public boolean isOrden() {
+        return orden;
+    }
+
+    public void setOrden(boolean orden) {
+        this.orden = orden;
+    }
+    
     public JProgressBar getMesa() {
         return mesa;
     }
@@ -44,10 +69,15 @@ public class Mesa extends Thread{
             if (clientes.size()<4&&(mesa.getMaximum()>mesa.getValue())) {
                 mesa.setMaximum(15);
                 mesa.setValue(mesa.getValue()+1);
+                mesa.setString(mesa.getValue()+" minutos");
             }
             if (clientes.size()==4&&(mesa.getMaximum()>mesa.getValue())) {
                 mesa.setMaximum(1);
                 mesa.setValue(mesa.getValue()+1);
+                mesa.setString(mesa.getValue()+" minutos");
+            }
+            if (mesa.getValue()==mesa.getMaximum()) {
+                mesa.setString("Listo para Ordenar");
             }
             try {
                 Thread.sleep(1000);
