@@ -21,7 +21,10 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         this.setLocationRelativeTo(null);
-
+        ac.cargarArchivo();
+        for (int i = 0; i < ac.getClientes().size(); i++) {
+            clientes.add(ac.getClientes().get(i));
+        }
     }
 
     /**
@@ -81,6 +84,15 @@ public class Principal extends javax.swing.JFrame {
         lb_mesa3.setText("Mesa #3");
 
         lb_mesa4.setText("Mesa #4");
+
+        pb_mesa1.setToolTipText("");
+        pb_mesa1.setString("0 minutos");
+
+        pb_mesa2.setString("0 minutos");
+
+        pb_mesa3.setString("0 minutos");
+
+        pb_mesa4.setString("0 minutos");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -289,18 +301,18 @@ public class Principal extends javax.swing.JFrame {
 
     private void jb_barMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jb_barMouseClicked
         // TODO add your handling code here:
+        if (clientes.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "No existen clientes!");
+        }else{
         jd_bar.setModal(true);
         jd_bar.setLocationRelativeTo(null);
         jd_bar.pack();
         administrarTiempo at=new administrarTiempo(lb_hora);
         Thread proceso=new Thread(at);
-        proceso.start();        
-        ac.cargarArchivo();
-        for (int i = 0; i < ac.getClientes().size(); i++) {
-            clientes.add(ac.getClientes().get(i));
-        }
+        proceso.start();                
         Collections.shuffle(clientes);
         jd_bar.setVisible(true);                
+        }
     }//GEN-LAST:event_jb_barMouseClicked
 
     private void mesa_addMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mesa_addMouseClicked
@@ -429,7 +441,11 @@ public class Principal extends javax.swing.JFrame {
 
     private void lb_mesa1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_mesa1MouseClicked
         // TODO add your handling code here:
-        
+        if (pb_mesa1.getValue()==pb_mesa1.getMaximum()) {
+            for (int i = 0; i < m1.getClientes().size(); i++) {
+                
+            }
+        }
     }//GEN-LAST:event_lb_mesa1MouseClicked
 
     /**

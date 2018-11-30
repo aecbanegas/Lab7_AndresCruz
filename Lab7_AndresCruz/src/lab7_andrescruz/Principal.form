@@ -145,12 +145,25 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JProgressBar" name="pb_mesa1">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="string" type="java.lang.String" value="0 minutos"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JProgressBar" name="pb_mesa2">
+          <Properties>
+            <Property name="string" type="java.lang.String" value="0 minutos"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JProgressBar" name="pb_mesa3">
+          <Properties>
+            <Property name="string" type="java.lang.String" value="0 minutos"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JProgressBar" name="pb_mesa4">
+          <Properties>
+            <Property name="string" type="java.lang.String" value="0 minutos"/>
+          </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
