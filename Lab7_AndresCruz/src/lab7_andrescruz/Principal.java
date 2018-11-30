@@ -25,7 +25,13 @@ public class Principal extends javax.swing.JFrame {
         ac.cargarArchivo();
         for (int i = 0; i < ac.getClientes().size(); i++) {
             clientes.add(ac.getClientes().get(i));
+            clientesoriginal.add(ac.getClientes().get(i));
         }
+        DefaultListModel modelo = (DefaultListModel) jl_listaclientes.getModel();
+        for (int i = 0; i < clientesoriginal.size(); i++) {
+            modelo.addElement(clientesoriginal.get(i));
+        }
+        jl_listaclientes.setModel(modelo);
     }
 
     /**
@@ -81,7 +87,7 @@ public class Principal extends javax.swing.JFrame {
         jb_crear = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        jl_listaclientes = new javax.swing.JList<>();
         jLabel19 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -91,17 +97,17 @@ public class Principal extends javax.swing.JFrame {
         jd_modificar = new javax.swing.JDialog();
         jPanel4 = new javax.swing.JPanel();
         jLabel20 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        tf_nombrem = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        tf_apellidom = new javax.swing.JTextField();
         jLabel22 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<>();
+        cb_tarjetam = new javax.swing.JComboBox<>();
         jLabel23 = new javax.swing.JLabel();
-        jSpinner3 = new javax.swing.JSpinner();
+        js_dinerom = new javax.swing.JSpinner();
         jLabel24 = new javax.swing.JLabel();
-        jComboBox6 = new javax.swing.JComboBox<>();
+        cb_tipoclientem = new javax.swing.JComboBox<>();
         jLabel25 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        tf_cuentam = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -369,14 +375,29 @@ public class Principal extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Crear", jPanel1);
 
-        jList1.setModel(new DefaultListModel());
-        jScrollPane5.setViewportView(jList1);
+        jl_listaclientes.setModel(new DefaultListModel());
+        jScrollPane5.setViewportView(jl_listaclientes);
 
         jLabel19.setText("Clientes Existentes:");
 
         jButton1.setText("Eliminar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
 
         jButton2.setText("Modificar");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -451,15 +472,15 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel22.setText("Tarjeta de Credito:");
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Amex", "Visa" }));
+        cb_tarjetam.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Amex", "Visa" }));
 
         jLabel23.setText("Dinero a Mano:");
 
-        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
+        js_dinerom.setModel(new javax.swing.SpinnerNumberModel(0.0d, 0.0d, null, 1.0d));
 
         jLabel24.setText("Tipo de Cliente:");
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Normal", "UNITEC" }));
+        cb_tipoclientem.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Normal", "UNITEC" }));
 
         jLabel25.setText("Numero de Cuenta (Solo si estudia en UNITEC):");
 
@@ -470,27 +491,27 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jTextField9)
+                    .addComponent(tf_cuentam)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel20)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tf_nombrem, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel21)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField8))
+                        .addComponent(tf_apellidom))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel22)
                             .addComponent(jLabel23))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox5, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSpinner3)))
+                            .addComponent(cb_tarjetam, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(js_dinerom)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel24)
                         .addGap(18, 18, 18)
-                        .addComponent(jComboBox6, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(cb_tipoclientem, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -500,27 +521,27 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_nombrem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel21)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tf_apellidom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cb_tarjetam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
-                    .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(js_dinerom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel24)
-                    .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cb_tipoclientem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel25)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tf_cuentam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -528,6 +549,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel26.setText("Modificar Usuario");
 
         jButton3.setText("Modificar");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jd_modificarLayout = new javax.swing.GroupLayout(jd_modificar.getContentPane());
         jd_modificar.getContentPane().setLayout(jd_modificarLayout);
@@ -791,7 +817,7 @@ public class Principal extends javax.swing.JFrame {
             boolean UNITEC;
             if (cliente.equals("Normal")) {
                 UNITEC = false;
-                ac.getClientes().add(new Cliente(nombre, apellido, tarjeta, billetera, UNITEC, "0"));   
+                ac.getClientes().add(new Cliente(nombre, apellido, tarjeta, billetera, UNITEC, "0"));
                 ac.escribirArchivo();
                 tf_nombre.setText("");
                 tf_apellido.setText("");
@@ -807,19 +833,28 @@ public class Principal extends javax.swing.JFrame {
                     ac.getClientes().add(new Cliente(nombre, apellido, tarjeta, billetera, UNITEC, cuenta));
                     ac.escribirArchivo();
                     tf_nombre.setText("");
-                tf_apellido.setText("");
-                tf_cuenta.setText("");
-                cb_tarjeta.setSelectedIndex(0);
-                cb_tipocliente.setSelectedIndex(0);
-                js_dinero.setValue(0);
-                JOptionPane.showMessageDialog(jd_clientes, "Se creo de manera exitosa!!");
+                    tf_apellido.setText("");
+                    tf_cuenta.setText("");
+                    cb_tarjeta.setSelectedIndex(0);
+                    cb_tipocliente.setSelectedIndex(0);
+                    js_dinero.setValue(0);
+                    JOptionPane.showMessageDialog(jd_clientes, "Se creo de manera exitosa!!");
                 } else {
                     JOptionPane.showMessageDialog(jd_clientes, "La cuenta ingresada es incorrecta!");
                 }
             }
+            clientes.clear();
+            clientesoriginal.clear();
             for (int i = 0; i < ac.getClientes().size(); i++) {
                 clientes.add(ac.getClientes().get(i));
+                clientesoriginal.add(ac.getClientes().get(i));
             }
+            Collections.shuffle(clientes);
+            DefaultListModel modelo = new DefaultListModel();
+            for (int i = 0; i < clientesoriginal.size(); i++) {
+                modelo.addElement(clientesoriginal.get(i));
+            }
+            jl_listaclientes.setModel(modelo);
             ac.cargarArchivo();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(jd_clientes, "Ha ingresado datos incorrectos!\n");
@@ -834,6 +869,118 @@ public class Principal extends javax.swing.JFrame {
         jd_clientes.setLocationRelativeTo(null);
         jd_clientes.setVisible(true);
     }//GEN-LAST:event_jb_ClientesMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        if (jl_listaclientes.getSelectedIndex()>=0) {
+            DefaultListModel modelo=(DefaultListModel)jl_listaclientes.getModel();
+            tf_nombrem.setText(((Cliente)modelo.getElementAt(jl_listaclientes.getSelectedIndex())).getNombre());
+            tf_apellidom.setText(((Cliente)modelo.getElementAt(jl_listaclientes.getSelectedIndex())).getApellido());
+            tf_cuentam.setText(((Cliente)modelo.getElementAt(jl_listaclientes.getSelectedIndex())).getCuenta());
+            js_dinerom.setValue(((Cliente)modelo.getElementAt(jl_listaclientes.getSelectedIndex())).getBilletera());
+            String tarjeta=((Cliente)modelo.getElementAt(jl_listaclientes.getSelectedIndex())).getTarjeta();
+            if (tarjeta.equals("Amex")) {
+                cb_tarjetam.setSelectedIndex(0);
+            }else{
+            cb_tarjetam.setSelectedIndex(1);
+            }
+            boolean unitec=((Cliente)modelo.getElementAt(jl_listaclientes.getSelectedIndex())).isUnitec();
+            if (unitec) {
+            cb_tipoclientem.setSelectedIndex(1);
+            }else{
+            cb_tipoclientem.setSelectedIndex(0);
+            }
+            jd_modificar.setModal(true);
+            jd_modificar.pack();
+            jd_modificar.setLocationRelativeTo(null);
+            jd_modificar.setVisible(true);
+        }
+ 
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        // TODO add your handling code here:
+               try {
+            String nombre = tf_nombrem.getText();
+            String apellido = tf_apellidom.getText();
+            String tarjeta = (String) cb_tarjetam.getSelectedItem();
+            double billetera = (Double) js_dinerom.getValue();
+            String cliente = (String) cb_tipoclientem.getSelectedItem();
+            boolean UNITEC;
+            if (cliente.equals("Normal")) {
+                UNITEC = false;
+                ac.getClientes().remove(jl_listaclientes.getSelectedIndex());
+                ac.getClientes().add(jl_listaclientes.getSelectedIndex(), new Cliente(nombre, apellido, tarjeta, billetera, UNITEC, "0"));
+                ac.escribirArchivo();
+                tf_nombrem.setText("");
+                tf_apellidom.setText("");
+                tf_cuentam.setText("");
+                cb_tarjetam.setSelectedIndex(0);
+                cb_tipoclientem.setSelectedIndex(0);
+                js_dinerom.setValue(0);
+                JOptionPane.showMessageDialog(jd_clientes, "Se creo de manera exitosa!!");
+                jd_modificar.dispose();
+            } else {
+                UNITEC = true;
+                String cuenta = tf_cuentam.getText();
+                if (validacioncuenta(cuenta) && validacionunica(cuenta)) {
+                    ac.getClientes().remove(jl_listaclientes.getSelectedIndex());
+                    ac.getClientes().add(jl_listaclientes.getSelectedIndex(),new Cliente(nombre, apellido, tarjeta, billetera, UNITEC, cuenta));
+                    ac.escribirArchivo();
+                    tf_nombrem.setText("");
+                    tf_apellidom.setText("");
+                    tf_cuentam.setText("");
+                    cb_tarjetam.setSelectedIndex(0);
+                    cb_tipoclientem.setSelectedIndex(0);
+                    js_dinerom.setValue(0);
+                    JOptionPane.showMessageDialog(jd_clientes, "Se creo de manera exitosa!!");
+                    jd_modificar.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(jd_clientes, "La cuenta ingresada es incorrecta!");
+                }
+            }
+            clientes.clear();
+            clientesoriginal.clear();
+            for (int i = 0; i < ac.getClientes().size(); i++) {
+                clientes.add(ac.getClientes().get(i));
+                clientesoriginal.add(ac.getClientes().get(i));
+            }
+            Collections.shuffle(clientes);
+            DefaultListModel modelo = new DefaultListModel();
+            for (int i = 0; i < clientesoriginal.size(); i++) {
+                modelo.addElement(clientesoriginal.get(i));
+            }
+            jl_listaclientes.setModel(modelo);
+            ac.cargarArchivo();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(jd_clientes, "Ha ingresado datos incorrectos!\n");
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        if (jl_listaclientes.getSelectedIndex()>=0) {
+            ac.getClientes().remove(jl_listaclientes.getSelectedIndex());
+            ac.cargarArchivo();
+            clientes.clear();
+            clientesoriginal.clear();
+            for (int i = 0; i < ac.getClientes().size(); i++) {
+                clientes.add(ac.getClientes().get(i));
+                clientesoriginal.add(ac.getClientes().get(i));
+            }            
+            DefaultListModel modelo = new DefaultListModel();
+            for (int i = 0; i < ac.getClientes().size(); i++) {
+                modelo.addElement(ac.getClientes().get(i));
+            }
+            jl_listaclientes.setModel(modelo);            
+            JOptionPane.showMessageDialog(jd_clientes, "Se elimino de manera exitosa!");
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -872,13 +1019,13 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cb_tarjeta;
+    private javax.swing.JComboBox<String> cb_tarjetam;
     private javax.swing.JComboBox<String> cb_tipocliente;
+    private javax.swing.JComboBox<String> cb_tipoclientem;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -899,7 +1046,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -908,15 +1054,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JSpinner jSpinner3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextArea jTextArea4;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JButton jb_Clientes;
     private javax.swing.JButton jb_bar;
     private javax.swing.JButton jb_crear;
@@ -925,7 +1067,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JDialog jd_clientes;
     private javax.swing.JDialog jd_inventario;
     private javax.swing.JDialog jd_modificar;
+    private javax.swing.JList<String> jl_listaclientes;
     private javax.swing.JSpinner js_dinero;
+    private javax.swing.JSpinner js_dinerom;
     private javax.swing.JLabel lb_hora;
     private javax.swing.JLabel lb_mesa1;
     private javax.swing.JLabel lb_mesa2;
@@ -940,10 +1084,14 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JProgressBar pb_mesa3;
     private javax.swing.JProgressBar pb_mesa4;
     private javax.swing.JTextField tf_apellido;
+    private javax.swing.JTextField tf_apellidom;
     private javax.swing.JTextField tf_cuenta;
+    private javax.swing.JTextField tf_cuentam;
     private javax.swing.JTextField tf_nombre;
+    private javax.swing.JTextField tf_nombrem;
     // End of variables declaration//GEN-END:variables
-    ArrayList<Cliente> clientes=new ArrayList();
+    ArrayList<Cliente> clientes = new ArrayList();
+    ArrayList<Cliente> clientesoriginal=new ArrayList();
     Mesa m1, m2, m3, m4;
     administrarCliente ac = new administrarCliente("./Cliente.aecb");
 }

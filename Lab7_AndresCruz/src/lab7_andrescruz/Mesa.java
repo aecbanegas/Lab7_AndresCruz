@@ -65,7 +65,8 @@ public class Mesa extends Thread{
     }
     
     public void run(){
-        while (!clientes.isEmpty()) {
+        if (!clientes.isEmpty()) {
+            while(vive){
             System.out.println("Aqui");
             if (clientes.size()<4&&(mesa.getMaximum()>mesa.getValue())) {
                 mesa.setMaximum(15);
@@ -79,11 +80,13 @@ public class Mesa extends Thread{
             }
             if (mesa.getValue()==mesa.getMaximum()) {
                 mesa.setString("Listo para Ordenar");
+                vive=false;
             }
             System.out.println("hasta aqui");
             try {
                 Thread.sleep(1000);
             } catch (Exception e) {
+            }
             }
         }
     }
