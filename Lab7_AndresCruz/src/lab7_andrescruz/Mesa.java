@@ -65,20 +65,22 @@ public class Mesa extends Thread{
     }
     
     public void run(){
-        if (!clientes.isEmpty()) {
+        while (!clientes.isEmpty()) {
+            System.out.println("Aqui");
             if (clientes.size()<4&&(mesa.getMaximum()>mesa.getValue())) {
                 mesa.setMaximum(15);
                 mesa.setValue(mesa.getValue()+1);
-                mesa.setString(mesa.getValue()+" minutos");
+                mesa.setString(Integer.toString(mesa.getValue())+" minutos");
             }
             if (clientes.size()==4&&(mesa.getMaximum()>mesa.getValue())) {
                 mesa.setMaximum(1);
                 mesa.setValue(mesa.getValue()+1);
-                mesa.setString(mesa.getValue()+" minutos");
+                mesa.setString(Integer.toString(mesa.getValue())+" minutos");
             }
             if (mesa.getValue()==mesa.getMaximum()) {
                 mesa.setString("Listo para Ordenar");
             }
+            System.out.println("hasta aqui");
             try {
                 Thread.sleep(1000);
             } catch (Exception e) {

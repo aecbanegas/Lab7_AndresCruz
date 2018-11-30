@@ -1,8 +1,10 @@
 
 package lab7_andrescruz;
 
+import java.io.Serializable;
 
-public class Cliente {
+
+public class Cliente implements Serializable{
     String nombre;
     String apellido;
     String tarjeta;
@@ -12,6 +14,8 @@ public class Cliente {
     boolean unitec;
     String cuenta;
 
+        private static final long SerialVersionUID=1;
+        
     public Cliente(String nombre, String apellido, String tarjeta, Double billetera, boolean unitec, String cuenta) {
         this.nombre = nombre;
         this.apellido = apellido;
