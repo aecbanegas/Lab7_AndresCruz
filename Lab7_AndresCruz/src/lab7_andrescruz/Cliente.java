@@ -12,13 +12,13 @@ public class Cliente {
     boolean unitec;
     String cuenta;
 
-    public Cliente(String nombre, String apellido, String tarjeta, Double cargo, Double billetera, String recibos, boolean unitec, String cuenta) {
+    public Cliente(String nombre, String apellido, String tarjeta, Double billetera, boolean unitec, String cuenta) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.tarjeta = tarjeta;
-        this.cargo = cargo;
+        this.cargo = 0.0;
         this.billetera = billetera;
-        this.recibos = recibos;
+        this.recibos = "";
         this.unitec = unitec;
         if (this.unitec) {
         this.cuenta = cuenta;    
