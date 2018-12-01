@@ -15,6 +15,7 @@ import javax.swing.JProgressBar;
 public class Mesa implements Runnable{
 
     JProgressBar mesa;
+    int media;
     boolean vive = false;
     boolean orden = false;
     boolean flag = false;
@@ -27,6 +28,14 @@ public class Mesa implements Runnable{
         esperar = true;
     }
 
+    public int getMedia() {
+        return media;
+    }
+
+    public void setMedia(int media) {
+        this.media = media;
+    }
+    
     public boolean isComer() {
         return comer;
     }
@@ -84,14 +93,14 @@ public class Mesa implements Runnable{
     }
 
     @Override
-    public void run() {
-        if (!clientes.isEmpty()) {
+    public void run() {        
             while (vive) {
-                if (esperar) {                    
-                   
+                if (esperar) {                                        
                     if (mesa.getValue() == mesa.getMaximum()) {
                         mesa.setString("Listo para Ordenar");                        
                         esperar = false;                        
+                        mesa.setValue(0);
+                    mesa.setMaximum(media);
                     }else{
                         mesa.setMaximum(15);
                         mesa.setValue(mesa.getValue() + 1);
@@ -99,12 +108,15 @@ public class Mesa implements Runnable{
                     
                     }
                 }
+                if (orden) {
+                    mesa.setValue(mesa.getValue() + 1);
+                        mesa.setString(Integer.toString(mesa.getValue()) + " minutos");                    
+                }
                 
                 try {
                     Thread.sleep(1000);
                 } catch (Exception e) {
                 }
-            }
-        }
+            }        
     }
 }
