@@ -12,18 +12,37 @@ import javax.swing.JProgressBar;
  *
  * @author MBanegas
  */
-public class Mesa extends Thread{
+public class Mesa extends Thread {
+
     JProgressBar mesa;
-    boolean vive=false;
-    boolean orden=false;
-    boolean flag=false;
-    ArrayList<Cliente>clientes=new ArrayList();
+    boolean vive = false;
+    boolean orden = false;
+    boolean flag = false;
+    boolean comer = false;
+    boolean esperar = false;
+    ArrayList<Cliente> clientes = new ArrayList();
 
     public Mesa(JProgressBar mesa) {
-        this.mesa = mesa;
-        vive=true;
+        this.mesa = mesa;        
+        esperar = true;
     }
 
+    public boolean isComer() {
+        return comer;
+    }
+
+    public void setComer(boolean comer) {
+        this.comer = comer;
+    }
+
+    public boolean isEsperar() {
+        return esperar;
+    }
+
+    public void setEsperar(boolean esperar) {
+        this.esperar = esperar;
+    }
+    
     public boolean isFlag() {
         return flag;
     }
@@ -31,7 +50,7 @@ public class Mesa extends Thread{
     public void setFlag(boolean flag) {
         this.flag = flag;
     }
-    
+
     public boolean isVive() {
         return vive;
     }
@@ -47,7 +66,7 @@ public class Mesa extends Thread{
     public void setOrden(boolean orden) {
         this.orden = orden;
     }
-    
+
     public JProgressBar getMesa() {
         return mesa;
     }
@@ -63,30 +82,34 @@ public class Mesa extends Thread{
     public void setClientes(ArrayList<Cliente> clientes) {
         this.clientes = clientes;
     }
-    
-    public void run(){
+
+    public void run() {
         if (!clientes.isEmpty()) {
-            while(vive){
-            System.out.println("Aqui");
-            if (clientes.size()<4&&(mesa.getMaximum()>mesa.getValue())) {
-                mesa.setMaximum(15);
-                mesa.setValue(mesa.getValue()+1);
-                mesa.setString(Integer.toString(mesa.getValue())+" minutos");
-            }
-            if (clientes.size()==4&&(mesa.getMaximum()>mesa.getValue())) {
-                mesa.setMaximum(1);
-                mesa.setValue(mesa.getValue()+1);
-                mesa.setString(Integer.toString(mesa.getValue())+" minutos");
-            }
-            if (mesa.getValue()==mesa.getMaximum()) {
-                mesa.setString("Listo para Ordenar");
-                vive=false;
-            }
-            System.out.println("hasta aqui");
-            try {
-                Thread.sleep(1000);
-            } catch (Exception e) {
-            }
+            while (vive) {
+                if (esperar) {
+                    if (clientes.size() < 4 && (mesa.getMaximum() > mesa.getValue())) {
+                        mesa.setMaximum(15);
+                        mesa.setValue(mesa.getValue() + 1);
+                        mesa.setString(Integer.toString(mesa.getValue()) + " minutos");
+                    }else{
+                    mesa.disable();
+                    }
+                    if (clientes.size() == 4 && (mesa.getMaximum() > mesa.getValue())) {
+                        mesa.setMaximum(1);
+                        mesa.setValue(mesa.getValue() + 1);
+                        mesa.setString(Integer.toString(mesa.getValue()) + " minutos");
+                    }
+                    if (mesa.getValue() == mesa.getMaximum()) {
+                        mesa.setString("Listo para Ordenar");
+                        mesa.disable();
+                        esperar = false;                        
+                    }
+                }
+                
+                try {
+                    Thread.sleep(1000);
+                } catch (Exception e) {
+                }
             }
         }
     }

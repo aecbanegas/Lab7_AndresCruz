@@ -60,13 +60,13 @@ public class Principal extends javax.swing.JFrame {
         pb_mesa3 = new javax.swing.JProgressBar();
         pb_mesa4 = new javax.swing.JProgressBar();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        ta_m1 = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        ta_m2 = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        ta_m3 = new javax.swing.JTextArea();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea4 = new javax.swing.JTextArea();
+        ta_m4 = new javax.swing.JTextArea();
         jLabel7 = new javax.swing.JLabel();
         mesa_add = new javax.swing.JButton();
         mesa2_add = new javax.swing.JButton();
@@ -161,21 +161,25 @@ public class Principal extends javax.swing.JFrame {
 
         pb_mesa4.setString("0 minutos");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        ta_m1.setEditable(false);
+        ta_m1.setColumns(20);
+        ta_m1.setRows(5);
+        jScrollPane1.setViewportView(ta_m1);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        ta_m2.setEditable(false);
+        ta_m2.setColumns(20);
+        ta_m2.setRows(5);
+        jScrollPane2.setViewportView(ta_m2);
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane3.setViewportView(jTextArea3);
+        ta_m3.setEditable(false);
+        ta_m3.setColumns(20);
+        ta_m3.setRows(5);
+        jScrollPane3.setViewportView(ta_m3);
 
-        jTextArea4.setColumns(20);
-        jTextArea4.setRows(5);
-        jScrollPane4.setViewportView(jTextArea4);
+        ta_m4.setEditable(false);
+        ta_m4.setColumns(20);
+        ta_m4.setRows(5);
+        jScrollPane4.setViewportView(ta_m4);
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("*Para ordenar debe hacer click encima de la respectiva mesa, se generaran las ordenes en el orden de personas agregadas a cada mesa.");
@@ -451,6 +455,11 @@ public class Principal extends javax.swing.JFrame {
         jTabbedPane1.addTab("Listar", jPanel3);
 
         jButton4.setText("Regresar");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jd_clientesLayout = new javax.swing.GroupLayout(jd_clientes.getContentPane());
         jd_clientes.getContentPane().setLayout(jd_clientesLayout);
@@ -816,14 +825,14 @@ public class Principal extends javax.swing.JFrame {
                     String imprimir = "";
                     for (int i = 0; i < clientes.size(); i++) {
                         imprimir += "Posicion: " + i + " - " + clientes.get(i) + "\n";
-                    }
+                    }                    
                     int elegido = Integer.parseInt(JOptionPane.showInputDialog(jd_bar, imprimir + "Ingrese la posicion del cliente para agregarlo a la mesa: "));
-                    seleccion = false;
-                    m1 = new Mesa(pb_mesa1);
+                    seleccion = false;                    
                     m1.getClientes().add(clientes.get(elegido));
                     clientes.remove(elegido);
                     if (m1.isFlag()) {
                     } else {
+                        m1.setVive(true);
                         m1.start();
                         m1.setFlag(true);
                     }
@@ -831,6 +840,12 @@ public class Principal extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(jd_bar, "La mesa actual esta llena o ya no hay clientes en la lista de espera, espere para poder ordenar!");
                     seleccion = false;
                 }
+                String imprimir="";
+                for (int i = 0; i < m1.getClientes().size(); i++) {
+                    imprimir+=m1.getClientes().get(i)+"\n";
+                }
+                System.out.println(m1.getClientes());
+                ta_m1.setText(imprimir);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(jd_bar, "La posicion ingresada no es valida!\nIntentelo Nuevamente.");
             }
@@ -849,12 +864,12 @@ public class Principal extends javax.swing.JFrame {
                         imprimir += "Posicion: " + i + " - " + clientes.get(i) + "\n";
                     }
                     int elegido = Integer.parseInt(JOptionPane.showInputDialog(jd_bar, imprimir + "Ingrese la posicion del cliente para agregarlo a la mesa: "));
-                    seleccion = false;
-                    m2 = new Mesa(pb_mesa2);
+                    seleccion = false;                    
                     m2.getClientes().add(clientes.get(elegido));
                     clientes.remove(elegido);
                     if (m2.isFlag()) {
                     } else {
+                        m2.setVive(true);
                         m2.start();
                         m2.setFlag(true);
                     }
@@ -862,6 +877,11 @@ public class Principal extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(jd_bar, "La mesa actual esta llena o ya no hay clientes en la lista de espera, espere para poder ordenar!");
                     seleccion = false;
                 }
+                                String imprimir="";
+                for (int i = 0; i < m2.getClientes().size(); i++) {
+                    imprimir+=m2.getClientes().get(i)+"\n";
+                }
+                ta_m2.setText(imprimir);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(jd_bar, "La posicion ingresada no es valida!\nIntentelo Nuevamente.");
             }
@@ -880,12 +900,12 @@ public class Principal extends javax.swing.JFrame {
                         imprimir += "Posicion: " + i + " - " + clientes.get(i) + "\n";
                     }
                     int elegido = Integer.parseInt(JOptionPane.showInputDialog(jd_bar, imprimir + "Ingrese la posicion del cliente para agregarlo a la mesa: "));
-                    seleccion = false;
-                    m3 = new Mesa(pb_mesa3);
+                    seleccion = false;                    
                     m3.getClientes().add(clientes.get(elegido));
                     clientes.remove(elegido);
                     if (m3.isFlag()) {
                     } else {
+                        m3.setVive(true);
                         m3.start();
                         m3.setFlag(true);
                     }
@@ -893,6 +913,11 @@ public class Principal extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(jd_bar, "La mesa actual esta llena o ya no hay clientes en la lista de espera, espere para poder ordenar!");
                     seleccion = false;
                 }
+                String imprimir="";
+                for (int i = 0; i < m3.getClientes().size(); i++) {
+                    imprimir+=m3.getClientes().get(i)+"\n";
+                }
+                ta_m3.setText(imprimir);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(jd_bar, "La posicion ingresada no es valida!\nIntentelo Nuevamente.");
             }
@@ -911,12 +936,12 @@ public class Principal extends javax.swing.JFrame {
                         imprimir += "Posicion: " + i + " - " + clientes.get(i) + "\n";
                     }
                     int elegido = Integer.parseInt(JOptionPane.showInputDialog(jd_bar, imprimir + "Ingrese la posicion del cliente para agregarlo a la mesa: "));
-                    seleccion = false;
-                    m4 = new Mesa(pb_mesa4);
+                    seleccion = false;                    
                     m4.getClientes().add(clientes.get(elegido));
                     clientes.remove(elegido);
                     if (m4.isFlag()) {
                     } else {
+                        m4.setVive(true);
                         m4.start();
                         m4.setFlag(true);
                     }
@@ -924,6 +949,11 @@ public class Principal extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(jd_bar, "La mesa actual esta llena o ya no hay clientes en la lista de espera, espere para poder ordenar!");
                     seleccion = false;
                 }
+                String imprimir="";
+                for (int i = 0; i < m4.getClientes().size(); i++) {
+                    imprimir+=m4.getClientes().get(i)+"\n";
+                }
+                ta_m4.setText(imprimir);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(jd_bar, "La posicion ingresada no es valida!\nIntentelo Nuevamente.");
             }
@@ -1200,6 +1230,11 @@ public class Principal extends javax.swing.JFrame {
         jd_inventario.setVisible(true);
     }//GEN-LAST:event_jb_inventarioMouseClicked
 
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        // TODO add your handling code here:
+        jd_clientes.dispose();
+    }//GEN-LAST:event_jButton4MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -1284,10 +1319,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextArea jTextArea3;
-    private javax.swing.JTextArea jTextArea4;
     private javax.swing.JButton jb_Clientes;
     private javax.swing.JButton jb_bar;
     private javax.swing.JButton jb_crear;
@@ -1315,6 +1346,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JProgressBar pb_mesa2;
     private javax.swing.JProgressBar pb_mesa3;
     private javax.swing.JProgressBar pb_mesa4;
+    private javax.swing.JTextArea ta_m1;
+    private javax.swing.JTextArea ta_m2;
+    private javax.swing.JTextArea ta_m3;
+    private javax.swing.JTextArea ta_m4;
     private javax.swing.JTextField tf_apellido;
     private javax.swing.JTextField tf_apellidom;
     private javax.swing.JTextField tf_cuenta;
@@ -1325,7 +1360,7 @@ public class Principal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     ArrayList<Cliente> clientes = new ArrayList();
     ArrayList<Cliente> clientesoriginal=new ArrayList();
-    Mesa m1, m2, m3, m4;
+    Mesa m1=new Mesa(pb_mesa1), m2=new Mesa(pb_mesa2), m3=new Mesa(pb_mesa3), m4=new Mesa(pb_mesa4);
     administrarCliente ac = new administrarCliente("./Cliente.aecb");
     administrarComida aco=new administrarComida("./Comida.aecb");
     ArrayList<Comida> comidas=new ArrayList();
