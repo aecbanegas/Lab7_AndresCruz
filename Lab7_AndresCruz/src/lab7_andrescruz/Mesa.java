@@ -12,7 +12,7 @@ import javax.swing.JProgressBar;
  *
  * @author MBanegas
  */
-public class Mesa extends Thread {
+public class Mesa implements Runnable{
 
     JProgressBar mesa;
     boolean vive = false;
@@ -87,22 +87,20 @@ public class Mesa extends Thread {
     public void run() {
         if (!clientes.isEmpty()) {
             while (vive) {
-                if (esperar) {
-                    if (clientes.size() < 4 && (mesa.getMaximum() > mesa.getValue())) {
+                if (esperar) {                    
+//                    if (clientes.size() < 4) {
                         mesa.setMaximum(15);
                         mesa.setValue(mesa.getValue() + 1);
                         mesa.setString(Integer.toString(mesa.getValue()) + " minutos");
-                    }else{
-                    mesa.disable();
-                    }
-                    if (clientes.size() == 4 && (mesa.getMaximum() > mesa.getValue())) {
-                        mesa.setMaximum(1);
-                        mesa.setValue(mesa.getValue() + 1);
-                        mesa.setString(Integer.toString(mesa.getValue()) + " minutos");
-                    }
+//                    }
+//                    System.out.println("entra");
+//                    if (clientes.size() == 4 ) {
+//                        mesa.setMaximum(1);
+//                        mesa.setValue(mesa.getValue() + 1);
+//                        mesa.setString(Integer.toString(mesa.getValue()) + " minutos");
+//                    }
                     if (mesa.getValue() == mesa.getMaximum()) {
-                        mesa.setString("Listo para Ordenar");
-                        mesa.disable();
+                        mesa.setString("Listo para Ordenar");                        
                         esperar = false;                        
                     }
                 }

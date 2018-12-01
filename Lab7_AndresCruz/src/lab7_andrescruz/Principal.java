@@ -775,26 +775,27 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 456, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addGap(177, 177, 177)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jb_inventario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jb_Clientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jb_bar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(53, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(27, 27, 27)
                 .addComponent(jb_bar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jb_Clientes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jb_inventario)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addGap(62, 62, 62))
         );
 
         pack();
@@ -806,7 +807,7 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "No existen clientes!");
         } else {
             jd_bar.setModal(true);
-            jd_bar.setLocationRelativeTo(null);
+            jd_bar.setLocationRelativeTo(this);
             jd_bar.pack();
             administrarTiempo at = new administrarTiempo(lb_hora);
             Thread proceso = new Thread(at);
@@ -825,24 +826,25 @@ public class Principal extends javax.swing.JFrame {
                     String imprimir = "";
                     for (int i = 0; i < clientes.size(); i++) {
                         imprimir += "Posicion: " + i + " - " + clientes.get(i) + "\n";
-                    }                    
+                    }
                     int elegido = Integer.parseInt(JOptionPane.showInputDialog(jd_bar, imprimir + "Ingrese la posicion del cliente para agregarlo a la mesa: "));
-                    seleccion = false;                    
+                    seleccion = false;
                     m1.getClientes().add(clientes.get(elegido));
                     clientes.remove(elegido);
                     if (m1.isFlag()) {
                     } else {
                         m1.setVive(true);
-                        m1.start();
+                        Thread c = new Thread(m1);
+                        c.start();
                         m1.setFlag(true);
                     }
                 } else {
                     JOptionPane.showMessageDialog(jd_bar, "La mesa actual esta llena o ya no hay clientes en la lista de espera, espere para poder ordenar!");
                     seleccion = false;
                 }
-                String imprimir="";
+                String imprimir = "";
                 for (int i = 0; i < m1.getClientes().size(); i++) {
-                    imprimir+=m1.getClientes().get(i)+"\n";
+                    imprimir += m1.getClientes().get(i) + "\n";
                 }
                 System.out.println(m1.getClientes());
                 ta_m1.setText(imprimir);
@@ -864,22 +866,23 @@ public class Principal extends javax.swing.JFrame {
                         imprimir += "Posicion: " + i + " - " + clientes.get(i) + "\n";
                     }
                     int elegido = Integer.parseInt(JOptionPane.showInputDialog(jd_bar, imprimir + "Ingrese la posicion del cliente para agregarlo a la mesa: "));
-                    seleccion = false;                    
+                    seleccion = false;
                     m2.getClientes().add(clientes.get(elegido));
                     clientes.remove(elegido);
                     if (m2.isFlag()) {
                     } else {
                         m2.setVive(true);
-                        m2.start();
+                        Thread c = new Thread(m2);
+                        c.start();
                         m2.setFlag(true);
                     }
                 } else {
                     JOptionPane.showMessageDialog(jd_bar, "La mesa actual esta llena o ya no hay clientes en la lista de espera, espere para poder ordenar!");
                     seleccion = false;
                 }
-                                String imprimir="";
+                String imprimir = "";
                 for (int i = 0; i < m2.getClientes().size(); i++) {
-                    imprimir+=m2.getClientes().get(i)+"\n";
+                    imprimir += m2.getClientes().get(i) + "\n";
                 }
                 ta_m2.setText(imprimir);
             } catch (Exception e) {
@@ -900,22 +903,23 @@ public class Principal extends javax.swing.JFrame {
                         imprimir += "Posicion: " + i + " - " + clientes.get(i) + "\n";
                     }
                     int elegido = Integer.parseInt(JOptionPane.showInputDialog(jd_bar, imprimir + "Ingrese la posicion del cliente para agregarlo a la mesa: "));
-                    seleccion = false;                    
+                    seleccion = false;
                     m3.getClientes().add(clientes.get(elegido));
                     clientes.remove(elegido);
                     if (m3.isFlag()) {
                     } else {
                         m3.setVive(true);
-                        m3.start();
+                        Thread c = new Thread(m3);
+                        c.start();
                         m3.setFlag(true);
                     }
                 } else {
                     JOptionPane.showMessageDialog(jd_bar, "La mesa actual esta llena o ya no hay clientes en la lista de espera, espere para poder ordenar!");
                     seleccion = false;
                 }
-                String imprimir="";
+                String imprimir = "";
                 for (int i = 0; i < m3.getClientes().size(); i++) {
-                    imprimir+=m3.getClientes().get(i)+"\n";
+                    imprimir += m3.getClientes().get(i) + "\n";
                 }
                 ta_m3.setText(imprimir);
             } catch (Exception e) {
@@ -936,22 +940,23 @@ public class Principal extends javax.swing.JFrame {
                         imprimir += "Posicion: " + i + " - " + clientes.get(i) + "\n";
                     }
                     int elegido = Integer.parseInt(JOptionPane.showInputDialog(jd_bar, imprimir + "Ingrese la posicion del cliente para agregarlo a la mesa: "));
-                    seleccion = false;                    
+                    seleccion = false;
                     m4.getClientes().add(clientes.get(elegido));
                     clientes.remove(elegido);
                     if (m4.isFlag()) {
                     } else {
                         m4.setVive(true);
-                        m4.start();
+                        Thread c = new Thread(m4);
+                        c.start();
                         m4.setFlag(true);
                     }
                 } else {
                     JOptionPane.showMessageDialog(jd_bar, "La mesa actual esta llena o ya no hay clientes en la lista de espera, espere para poder ordenar!");
                     seleccion = false;
                 }
-                String imprimir="";
+                String imprimir = "";
                 for (int i = 0; i < m4.getClientes().size(); i++) {
-                    imprimir+=m4.getClientes().get(i)+"\n";
+                    imprimir += m4.getClientes().get(i) + "\n";
                 }
                 ta_m4.setText(imprimir);
             } catch (Exception e) {
@@ -1063,35 +1068,35 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
-        if (jl_listaclientes.getSelectedIndex()>=0) {
-            DefaultListModel modelo=(DefaultListModel)jl_listaclientes.getModel();
-            tf_nombrem.setText(((Cliente)modelo.getElementAt(jl_listaclientes.getSelectedIndex())).getNombre());
-            tf_apellidom.setText(((Cliente)modelo.getElementAt(jl_listaclientes.getSelectedIndex())).getApellido());
-            tf_cuentam.setText(((Cliente)modelo.getElementAt(jl_listaclientes.getSelectedIndex())).getCuenta());
-            js_dinerom.setValue(((Cliente)modelo.getElementAt(jl_listaclientes.getSelectedIndex())).getBilletera());
-            String tarjeta=((Cliente)modelo.getElementAt(jl_listaclientes.getSelectedIndex())).getTarjeta();
+        if (jl_listaclientes.getSelectedIndex() >= 0) {
+            DefaultListModel modelo = (DefaultListModel) jl_listaclientes.getModel();
+            tf_nombrem.setText(((Cliente) modelo.getElementAt(jl_listaclientes.getSelectedIndex())).getNombre());
+            tf_apellidom.setText(((Cliente) modelo.getElementAt(jl_listaclientes.getSelectedIndex())).getApellido());
+            tf_cuentam.setText(((Cliente) modelo.getElementAt(jl_listaclientes.getSelectedIndex())).getCuenta());
+            js_dinerom.setValue(((Cliente) modelo.getElementAt(jl_listaclientes.getSelectedIndex())).getBilletera());
+            String tarjeta = ((Cliente) modelo.getElementAt(jl_listaclientes.getSelectedIndex())).getTarjeta();
             if (tarjeta.equals("Amex")) {
                 cb_tarjetam.setSelectedIndex(0);
-            }else{
-            cb_tarjetam.setSelectedIndex(1);
+            } else {
+                cb_tarjetam.setSelectedIndex(1);
             }
-            boolean unitec=((Cliente)modelo.getElementAt(jl_listaclientes.getSelectedIndex())).isUnitec();
+            boolean unitec = ((Cliente) modelo.getElementAt(jl_listaclientes.getSelectedIndex())).isUnitec();
             if (unitec) {
-            cb_tipoclientem.setSelectedIndex(1);
-            }else{
-            cb_tipoclientem.setSelectedIndex(0);
+                cb_tipoclientem.setSelectedIndex(1);
+            } else {
+                cb_tipoclientem.setSelectedIndex(0);
             }
             jd_modificar.setModal(true);
             jd_modificar.pack();
             jd_modificar.setLocationRelativeTo(null);
             jd_modificar.setVisible(true);
         }
- 
+
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
         // TODO add your handling code here:
-               try {
+        try {
             String nombre = tf_nombrem.getText();
             String apellido = tf_apellidom.getText();
             String tarjeta = (String) cb_tarjetam.getSelectedItem();
@@ -1116,7 +1121,7 @@ public class Principal extends javax.swing.JFrame {
                 String cuenta = tf_cuentam.getText();
                 if (validacioncuenta(cuenta) && validacionunica(cuenta)) {
                     ac.getClientes().remove(jl_listaclientes.getSelectedIndex());
-                    ac.getClientes().add(jl_listaclientes.getSelectedIndex(),new Cliente(nombre, apellido, tarjeta, billetera, UNITEC, cuenta));
+                    ac.getClientes().add(jl_listaclientes.getSelectedIndex(), new Cliente(nombre, apellido, tarjeta, billetera, UNITEC, cuenta));
                     ac.escribirArchivo();
                     tf_nombrem.setText("");
                     tf_apellidom.setText("");
@@ -1151,15 +1156,15 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         // TODO add your handling code here:
-        if (jl_listaclientes.getSelectedIndex()>=0) {
+        if (jl_listaclientes.getSelectedIndex() >= 0) {
             ac.getClientes().remove(jl_listaclientes.getSelectedIndex());
-            clientes.clear();   
+            clientes.clear();
             clientesoriginal.clear();
             for (int i = 0; i < ac.getClientes().size(); i++) {
                 clientes.add(ac.getClientes().get(i));
                 clientesoriginal.add(ac.getClientes().get(i));
             }
-            DefaultListModel modelo=(DefaultListModel)jl_listaclientes.getModel();
+            DefaultListModel modelo = (DefaultListModel) jl_listaclientes.getModel();
             modelo.remove(jl_listaclientes.getSelectedIndex());
             jl_listaclientes.setModel(modelo);
             ac.escribirArchivo();
@@ -1169,15 +1174,15 @@ public class Principal extends javax.swing.JFrame {
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:
         try {
-            String nombre=tf_nombrecomida.getText();
-            Double precio=(Double)js_preciocomida.getValue();
-            int tiempo=(Integer)js_tiempo.getValue();
-            int cantidad=(Integer)js_cantidad.getValue();
-            comidas.add(new Comida(nombre, precio, tiempo,cantidad));
+            String nombre = tf_nombrecomida.getText();
+            Double precio = (Double) js_preciocomida.getValue();
+            int tiempo = (Integer) js_tiempo.getValue();
+            int cantidad = (Integer) js_cantidad.getValue();
+            comidas.add(new Comida(nombre, precio, tiempo, cantidad));
             tf_nombrecomida.setText("");
             js_preciocomida.setValue(0);
             js_tiempo.setValue(0);
-            js_cantidad.setValue(0); 
+            js_cantidad.setValue(0);
             aco.getLista().clear();
             for (int i = 0; i < comidas.size(); i++) {
                 aco.getLista().add(comidas.get(i));
@@ -1190,33 +1195,31 @@ public class Principal extends javax.swing.JFrame {
 
     private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
         // TODO add your handling code here:
-        
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
 
-            },
-            new String [] {
-                "Nombre", "Tiempo", "Precio", "Cantidad"
-            }
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "Nombre", "Tiempo", "Precio", "Cantidad"
+                }
         ) {
-            Class[] types = new Class [] {
+            Class[] types = new Class[]{
                 java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Integer.class
             };
-            boolean[] canEdit = new boolean [] {
+            boolean[] canEdit = new boolean[]{
                 false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+                return types[columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
-        DefaultTableModel modelo=(DefaultTableModel)jTable1.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         for (int i = 0; i < comidas.size(); i++) {
-            Object[] row={comidas.get(i).getNombre(),comidas.get(i).getTiempo(),comidas.get(i).getPrecio(),comidas.get(i).getCantidad()};
+            Object[] row = {comidas.get(i).getNombre(), comidas.get(i).getTiempo(), comidas.get(i).getPrecio(), comidas.get(i).getCantidad()};
             modelo.addRow(row);
         }
         jTable1.setModel(modelo);
@@ -1359,9 +1362,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField tf_nombrem;
     // End of variables declaration//GEN-END:variables
     ArrayList<Cliente> clientes = new ArrayList();
-    ArrayList<Cliente> clientesoriginal=new ArrayList();
-    Mesa m1=new Mesa(pb_mesa1), m2=new Mesa(pb_mesa2), m3=new Mesa(pb_mesa3), m4=new Mesa(pb_mesa4);
+    ArrayList<Cliente> clientesoriginal = new ArrayList();
+    Mesa m1 = new Mesa(pb_mesa1), m2 = new Mesa(pb_mesa2), m3 = new Mesa(pb_mesa3), m4 = new Mesa(pb_mesa4);
     administrarCliente ac = new administrarCliente("./Cliente.aecb");
-    administrarComida aco=new administrarComida("./Comida.aecb");
-    ArrayList<Comida> comidas=new ArrayList();
+    administrarComida aco = new administrarComida("./Comida.aecb");
+    ArrayList<Comida> comidas = new ArrayList();
 }
