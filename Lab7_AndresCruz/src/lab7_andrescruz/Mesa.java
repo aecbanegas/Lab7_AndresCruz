@@ -88,20 +88,15 @@ public class Mesa implements Runnable{
         if (!clientes.isEmpty()) {
             while (vive) {
                 if (esperar) {                    
-//                    if (clientes.size() < 4) {
-                        mesa.setMaximum(15);
-                        mesa.setValue(mesa.getValue() + 1);
-                        mesa.setString(Integer.toString(mesa.getValue()) + " minutos");
-//                    }
-//                    System.out.println("entra");
-//                    if (clientes.size() == 4 ) {
-//                        mesa.setMaximum(1);
-//                        mesa.setValue(mesa.getValue() + 1);
-//                        mesa.setString(Integer.toString(mesa.getValue()) + " minutos");
-//                    }
+                   
                     if (mesa.getValue() == mesa.getMaximum()) {
                         mesa.setString("Listo para Ordenar");                        
                         esperar = false;                        
+                    }else{
+                        mesa.setMaximum(15);
+                        mesa.setValue(mesa.getValue() + 1);
+                        mesa.setString(Integer.toString(mesa.getValue()) + " minutos");
+                    
                     }
                 }
                 

@@ -829,7 +829,8 @@ public class Principal extends javax.swing.JFrame {
                     }
                     int elegido = Integer.parseInt(JOptionPane.showInputDialog(jd_bar, imprimir + "Ingrese la posicion del cliente para agregarlo a la mesa: "));
                     seleccion = false;
-                    m1.getClientes().add(clientes.get(elegido));
+                    m1=new Mesa(pb_mesa1);
+                    bb.getM1().add(clientes.get(elegido));
                     clientes.remove(elegido);
                     if (m1.isFlag()) {
                     } else {
@@ -843,10 +844,9 @@ public class Principal extends javax.swing.JFrame {
                     seleccion = false;
                 }
                 String imprimir = "";
-                for (int i = 0; i < m1.getClientes().size(); i++) {
-                    imprimir += m1.getClientes().get(i) + "\n";
-                }
-                System.out.println(m1.getClientes());
+                for (int i = 0; i < bb.getM1().size(); i++) {
+                    imprimir += bb.getM1().get(i) + "\n";
+                }                
                 ta_m1.setText(imprimir);
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(jd_bar, "La posicion ingresada no es valida!\nIntentelo Nuevamente.");
@@ -867,7 +867,8 @@ public class Principal extends javax.swing.JFrame {
                     }
                     int elegido = Integer.parseInt(JOptionPane.showInputDialog(jd_bar, imprimir + "Ingrese la posicion del cliente para agregarlo a la mesa: "));
                     seleccion = false;
-                    m2.getClientes().add(clientes.get(elegido));
+                    m2=new Mesa(pb_mesa1);
+                    bb.getM2().add(clientes.get(elegido));                    
                     clientes.remove(elegido);
                     if (m2.isFlag()) {
                     } else {
@@ -881,8 +882,8 @@ public class Principal extends javax.swing.JFrame {
                     seleccion = false;
                 }
                 String imprimir = "";
-                for (int i = 0; i < m2.getClientes().size(); i++) {
-                    imprimir += m2.getClientes().get(i) + "\n";
+                for (int i = 0; i < bb.getM2().size(); i++) {
+                    imprimir += bb.getM2().get(i) + "\n";
                 }
                 ta_m2.setText(imprimir);
             } catch (Exception e) {
@@ -904,7 +905,8 @@ public class Principal extends javax.swing.JFrame {
                     }
                     int elegido = Integer.parseInt(JOptionPane.showInputDialog(jd_bar, imprimir + "Ingrese la posicion del cliente para agregarlo a la mesa: "));
                     seleccion = false;
-                    m3.getClientes().add(clientes.get(elegido));
+                    m3=new Mesa(pb_mesa1);
+                    bb.getM3().add(clientes.get(elegido));
                     clientes.remove(elegido);
                     if (m3.isFlag()) {
                     } else {
@@ -918,8 +920,8 @@ public class Principal extends javax.swing.JFrame {
                     seleccion = false;
                 }
                 String imprimir = "";
-                for (int i = 0; i < m3.getClientes().size(); i++) {
-                    imprimir += m3.getClientes().get(i) + "\n";
+                for (int i = 0; i < bb.getM3().size(); i++) {
+                    imprimir += bb.getM3().get(i) + "\n";
                 }
                 ta_m3.setText(imprimir);
             } catch (Exception e) {
@@ -941,7 +943,8 @@ public class Principal extends javax.swing.JFrame {
                     }
                     int elegido = Integer.parseInt(JOptionPane.showInputDialog(jd_bar, imprimir + "Ingrese la posicion del cliente para agregarlo a la mesa: "));
                     seleccion = false;
-                    m4.getClientes().add(clientes.get(elegido));
+                    m4=new Mesa(pb_mesa1);
+                    bb.getM4().add(clientes.get(elegido));
                     clientes.remove(elegido);
                     if (m4.isFlag()) {
                     } else {
@@ -955,8 +958,8 @@ public class Principal extends javax.swing.JFrame {
                     seleccion = false;
                 }
                 String imprimir = "";
-                for (int i = 0; i < m4.getClientes().size(); i++) {
-                    imprimir += m4.getClientes().get(i) + "\n";
+                for (int i = 0; i < bb.getM4().size(); i++) {
+                    imprimir += bb.getM4().get(i) + "\n";
                 }
                 ta_m4.setText(imprimir);
             } catch (Exception e) {
@@ -1363,8 +1366,9 @@ public class Principal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     ArrayList<Cliente> clientes = new ArrayList();
     ArrayList<Cliente> clientesoriginal = new ArrayList();
-    Mesa m1 = new Mesa(pb_mesa1), m2 = new Mesa(pb_mesa2), m3 = new Mesa(pb_mesa3), m4 = new Mesa(pb_mesa4);
+    Mesa m1, m2, m3, m4;
     administrarCliente ac = new administrarCliente("./Cliente.aecb");
     administrarComida aco = new administrarComida("./Comida.aecb");
     ArrayList<Comida> comidas = new ArrayList();
+    Bar bb=new Bar();
 }
